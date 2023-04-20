@@ -36,8 +36,10 @@ stages:
         cache: false
     plots:
     - predictions.csv:
-        template: confusion
+        template: confusion_normalized
         x: true_label
         y: predicted_label
+        x_label: 'True'
+        y_label: Predicted
         title: Confusion matrix
         cache: false
