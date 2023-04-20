@@ -19,11 +19,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # - name: Run training jobs
-      #   run: |
-      #     python make_raw_dataset.py
-      #     python preprocess.py
-      #     python train.py
+      - name: Run training jobs
+        run: |
+          python make_raw_dataset.py
+          python preprocess.py
+          python train.py
 
       # - name: Setup DVC
       #   uses: iterative/setup-dvc@v1
@@ -38,12 +38,8 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-
-          python make_raw_dataset.py
-          python preprocess.py
-          python train.py
           cat metrics.json >> report.md
-          echo "![](./confusion_matrix.png)" >> report.md
+          # echo "![](./confusion_matrix.png)" >> report.md
           # dvc metrics show --md >> report.md
           # dvc metrics diff --md main >> report.md
           
@@ -52,10 +48,4 @@ jobs:
           # echo "![](./confusion_plot.png)" >> report.md
 
           echo "Creating comment"
-          # cml comment create --publish=true report.md
-      
-      - name: Download report
-        uses: actions/download-artifact@v3
-        with:
-          name: report
-          path: report.md
+          cml comment create --publish=true report.md
