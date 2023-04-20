@@ -11,7 +11,7 @@ from sklearn.metrics import (
 import json
 
 
-RFC_FOREST_DEPTH=5
+RFC_FOREST_DEPTH=2
 
 dtypes_features = [
     ("feature_1", "float"),
