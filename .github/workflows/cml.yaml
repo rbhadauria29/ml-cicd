@@ -39,7 +39,7 @@ jobs:
         run: |
 
           cat metrics.json >> report.md
-          echo "![](./confusion_matrix.png)" >> report.md
+          # echo "![](./confusion_matrix.png)" >> report.md
           # dvc metrics show --md >> report.md
           # dvc metrics diff --md main >> report.md
           
