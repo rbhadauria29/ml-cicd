@@ -19,17 +19,17 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run training jobs
-        run: |
-          python make_raw_dataset.py
-          python preprocess.py
-          python train.py
+      # - name: Run training jobs
+      #   run: |
+      #     python make_raw_dataset.py
+      #     python preprocess.py
+      #     python train.py
 
-      # - name: Setup DVC
-      #   uses: iterative/setup-dvc@v1
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
 
-      # - name: Run DVC pipeline
-      #   run: dvc repro
+      - name: Run DVC pipeline
+        run: dvc repro
 
       - name: Setup CML
         uses: iterative/setup-cml@v1
@@ -38,12 +38,13 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cat metrics.json >> report.md
-          # echo "![](./confusion_matrix.png)" >> report.md
-          # dvc metrics show --md >> report.md
-          # dvc metrics diff --md main >> report.md
+          git fetch --prune
+          echo "## Metrics" >> report.md
+          dvc metrics show --md >> report.md
+          echo "## Metrics comparison" >> report.md
+          dvc metrics diff --md main >> report.md
           
-          # dvc plots diff --target predictions.csv --template confusion -x true_label -y predicted_label --show-vega main > vega.json
+          # dvc plots diff --target predictions.csv --show-vega main > vega.json
           # vl2png vega.json -s 1.5 > confusion_plot.png
           # echo "![](./confusion_plot.png)" >> report.md
 
