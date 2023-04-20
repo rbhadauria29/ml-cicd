@@ -52,4 +52,4 @@ jobs:
           # echo "![](./confusion_plot.png)" >> report.md
 
           echo "Creating comment"
-          cml comment create report.md
+          cml comment create --publish=true report.md
