@@ -53,3 +53,8 @@ jobs:
 
           echo "Creating comment"
           cml comment create --publish=true report.md
+      
+      - uses: actions/download-artifact@v3
+        with:
+          name: report
+          path: report.md
