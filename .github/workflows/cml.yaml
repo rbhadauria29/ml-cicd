@@ -33,6 +33,11 @@ jobs:
 
       - name: Setup CML
         uses: iterative/setup-cml@v1
+
+      - name: Setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
       
       - name: Create and publish metrics diff report
         env:
@@ -47,7 +52,7 @@ jobs:
           echo "![](./confusion_plot.png)" >> report.md
 
           echo "Creating comment"
-          # cml comment create --publish=true report.md
+          cml comment create --publish=true report.md
 
       - name: Save markdown report
         uses: actions/upload-artifact@v3
