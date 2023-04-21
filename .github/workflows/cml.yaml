@@ -34,10 +34,10 @@ jobs:
       - name: Setup CML
         uses: iterative/setup-cml@v1
 
-      - name: Setup node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+      # - name: Setup node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '16'
       
       - name: Create and publish metrics diff report
         env:
