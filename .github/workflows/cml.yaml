@@ -44,7 +44,7 @@ jobs:
           
           dvc plots diff --target predictions.csv --show-vega main > vega.json
           vl2png vega.json -s 1.5 > confusion_plot.png
-          # echo "![](./confusion_plot.png)" >> report.md
+          echo "![](./confusion_plot.png)" >> report.md
 
           echo "Creating comment"
           cml comment create --publish=true report.md
@@ -54,8 +54,3 @@ jobs:
         with:
           name: confusion-plot
           path: ./confusion_plot.png
-      
-      # - name: Download a single artifact
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: confusion-plot
