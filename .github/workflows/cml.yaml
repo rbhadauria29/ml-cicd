@@ -52,10 +52,10 @@ jobs:
       - name: Save markdown report
         uses: actions/upload-artifact@v3
         with:
-          name: diff-report
-          path: ./report.md
+          name: confusion-plot
+          path: ./confusion_plot.png
       
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          name: diff-report
+          name: confusion-plot
