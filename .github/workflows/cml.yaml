@@ -47,10 +47,10 @@ jobs:
           echo "![](./confusion_plot.png)" >> report.md
 
           echo "Creating comment"
-          cml comment create --publish=true report.md
+          # cml comment create --publish=true report.md
 
       - name: Save markdown report
         uses: actions/upload-artifact@v3
         with:
-          name: confusion-plot
-          path: ./confusion_plot.png
+          name: markdown-report
+          path: ./report.md
