@@ -54,3 +54,8 @@ jobs:
         with:
           name: diff-report
           path: ./report.md
+      
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: diff-report
