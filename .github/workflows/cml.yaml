@@ -39,13 +39,11 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git fetch --prune
-          echo "## Metrics" >> report.md
-          dvc metrics show --md >> report.md
           echo "## Metrics comparison" >> report.md
           dvc metrics diff --md main >> report.md
           
-          # dvc plots diff --target predictions.csv --show-vega main > vega.json
-          # vl2png vega.json -s 1.5 > confusion_plot.png
+          dvc plots diff --target predictions.csv --show-vega main > vega.json
+          vl2png vega.json -s 1.5 > confusion_plot.png
           # echo "![](./confusion_plot.png)" >> report.md
 
           echo "Creating comment"
