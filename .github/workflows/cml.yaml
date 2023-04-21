@@ -55,7 +55,7 @@ jobs:
           name: confusion-plot
           path: ./confusion_plot.png
       
-      - name: Download a single artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: confusion-plot
+      # - name: Download a single artifact
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: confusion-plot
