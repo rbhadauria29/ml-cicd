@@ -25,6 +25,7 @@ stages:
     cmd: python train.py
     deps:
     - train.py
+    - rfc_forest_depth.txt
     - processed_dataset/train_features.csv
     - processed_dataset/train_labels.csv
     - processed_dataset/test_features.csv

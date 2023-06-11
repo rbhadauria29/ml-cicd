@@ -65,9 +65,12 @@ stages:
     - path: processed_dataset/train_labels.csv
       md5: a7756150adacdaa68c6a9374c70d6b55
       size: 1512
+    - path: rfc_forest_depth.txt
+      md5: 1dcca23355272056f04fe8bf20edfce0
+      size: 2
     - path: train.py
-      md5: 96813b151f748c069841b118b1965100
-      size: 1816
+      md5: 592dfc595a4b0c7640f82277fe54e4d4
+      size: 1928
     outs:
     - path: confusion_matrix.png
       md5: a769c16c19be9aafbf032351649cf9d4

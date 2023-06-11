@@ -10,8 +10,9 @@ from sklearn.metrics import (
 )
 import json
 
-
-RFC_FOREST_DEPTH=5
+with open("rfc_forest_depth.txt", "r") as fp:
+    RFC_FOREST_DEPTH=int(fp.read())
+    print(f"RFC_FOREST_DEPTH={RFC_FOREST_DEPTH}")
 
 dtypes_features = [
     ("feature_1", "float"),
