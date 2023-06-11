@@ -1,7 +1,7 @@
 name: hp-tuning
 on:
   pull_request:
-    branches: hp_tune/*
+    branches: 'hp_tune/*'
 permissions: write-all
 jobs:
   hp_tune:
