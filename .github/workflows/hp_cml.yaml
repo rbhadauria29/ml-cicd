@@ -4,7 +4,8 @@ on:
     branches: main
 permissions: write-all
 jobs:
-  train_and_publish_report:
+  hp_tune:
+    if: startsWith(github.head_ref, 'hp_tune/')
     runs-on: ubuntu-latest
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
@@ -39,14 +40,15 @@ jobs:
       #   with:
       #     node-version: '16'
       
-      - name: Create HP params
+      - name: Create hp
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global --add safe.directory /__w/ml-cicd/ml-cicd
-          echo 2 > rfc_forest_length.txt
-          cat rfc_forest_length.txt
-          cml pr create --user-email hp-bot@cicd.ai --user-name HPBot --message "HP tuning" rfc_forest_length.txt
+          echo 2 > rfc_forest_depth.txt
+          cat rfc_forest_depth.txt
+          export BRANCH_NAME=train/$(python -c "import uuid; print(str(uuid.uuid4()).split('-')[-1])")
+          cml pr create --user-email hp-bot@cicd.ai --user-name HPBot --message "HP tuning" --branch $BRANCH_NAME rfc_forest_depth.txt
 
       # - name: Save markdown report
       #   uses: actions/upload-artifact@v3
