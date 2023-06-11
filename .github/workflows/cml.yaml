@@ -1,7 +1,7 @@
 name: model-training
 on:
   pull_request:
-    branches: main
+    branches: train/*
 permissions: write-all
 jobs:
   train_and_publish_report:
