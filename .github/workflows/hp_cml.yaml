@@ -28,8 +28,8 @@ jobs:
       # - name: Setup DVC
       #   uses: iterative/setup-dvc@v1
 
-      - name: Run DVC pipeline
-        run: dvc repro
+      # - name: Run DVC pipeline
+      #   run: dvc repro
 
       # - name: Setup CML
       #   uses: iterative/setup-cml@v1
@@ -39,13 +39,14 @@ jobs:
       #   with:
       #     node-version: '16'
       
-      - name: Create and publish metrics diff report
+      - name: Create HP params
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global --add safe.directory /__w/ml-cicd/ml-cicd
-          echo 5 > rfc_forest_length.txt
+          echo 2 > rfc_forest_length.txt
           cat rfc_forest_length.txt
+          cml pr create --user-email hp-bot@cicd.ai --user-name HPBot --message "HP tuning" rfc_forest_length.txt
 
       # - name: Save markdown report
       #   uses: actions/upload-artifact@v3
