@@ -39,7 +39,7 @@ jobs:
       #   with:
       #     node-version: '16'
       
-      - name: Create HP params
+      - name: Create hp
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
