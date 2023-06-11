@@ -44,7 +44,7 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global --add safe.directory /__w/ml-cicd/ml-cicd
-          echo 2 > rfc_forest_length.txt
+          echo 2 > rfc_forest_depth.txt
           cat rfc_forest_length.txt
           export BRANCH_NAME=train/$(python -c "import uuid; print(str(uuid.uuid4()).split('-')[-1])")
           cml pr create --user-email hp-bot@cicd.ai --user-name HPBot --message "HP tuning" --branch $BRANCH_NAME rfc_forest_length.txt
