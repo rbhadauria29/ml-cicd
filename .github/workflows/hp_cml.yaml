@@ -5,7 +5,7 @@ on:
 permissions: write-all
 jobs:
   hp_tune:
-    if: startsWith(github.ref, 'refs/heads/hp_tune/')
+    # if: startsWith(github.ref, 'refs/heads/hp_tune/')
     runs-on: ubuntu-latest
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
@@ -44,11 +44,16 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+
+          branch_name="${{ github.ref }}"
+          # branch_name="${branch_name#refs/heads/}"
+          echo "Branch name is $branch_name"
+
           git config --global --add safe.directory /__w/ml-cicd/ml-cicd
           echo 2 > rfc_forest_depth.txt
           cat rfc_forest_depth.txt
           export BRANCH_NAME=train/$(python -c "import uuid; print(str(uuid.uuid4()).split('-')[-1])")
-          cml pr create --user-email hp-bot@cicd.ai --user-name HPBot --message "HP tuning" --branch $BRANCH_NAME rfc_forest_depth.txt
+          # cml pr create --user-email hp-bot@cicd.ai --user-name HPBot --message "HP tuning" --branch $BRANCH_NAME rfc_forest_depth.txt
 
       # - name: Save markdown report
       #   uses: actions/upload-artifact@v3
