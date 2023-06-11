@@ -1,8 +1,8 @@
 name: hp-tuning
 on:
   pull_request:
-    branches: main
-    # branches-ignore: 'train/*'
+    # branches: main
+    branches-ignore: 'train/*'
 permissions: write-all
 jobs:
   hp_tune:
