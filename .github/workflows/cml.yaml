@@ -2,10 +2,10 @@ name: model-training
 on:
   pull_request:
     branches: main
-    branches-ignore: hp_test/*
 permissions: write-all
 jobs:
   train_and_publish_report:
+    if: startsWith(github.ref, 'train/')
     runs-on: ubuntu-latest
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:

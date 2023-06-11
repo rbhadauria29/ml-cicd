@@ -1,11 +1,11 @@
 name: hp-tuning
 on:
   pull_request:
-    # branches: main
-    branches-ignore: 'train/*'
+    branches: main
 permissions: write-all
 jobs:
   hp_tune:
+    if: startsWith(github.ref, 'hp_tune/')
     runs-on: ubuntu-latest
     container: ghcr.io/iterative/cml:0-dvc2-base1
     steps:
