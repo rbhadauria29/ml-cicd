@@ -1,7 +1,8 @@
 name: model-training
 on:
   pull_request:
-    branches: train/*
+    branches: main
+    # branches-ignore: hp_test/*
 permissions: write-all
 jobs:
   train_and_publish_report:
