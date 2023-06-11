@@ -2,6 +2,7 @@ name: hp-tuning
 on:
   pull_request:
     branches: main
+    branches-ignore: train/*
 permissions: write-all
 jobs:
   hp_tune:
@@ -45,7 +46,7 @@ jobs:
         run: |
           git config --global --add safe.directory /__w/ml-cicd/ml-cicd
           echo 2 > rfc_forest_depth.txt
-          cat rfc_forest_length.txt
+          cat rfc_forest_depth.txt
           export BRANCH_NAME=train/$(python -c "import uuid; print(str(uuid.uuid4()).split('-')[-1])")
           cml pr create --user-email hp-bot@cicd.ai --user-name HPBot --message "HP tuning" --branch $BRANCH_NAME rfc_forest_length.txt
 
